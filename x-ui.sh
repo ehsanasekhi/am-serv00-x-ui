@@ -463,7 +463,7 @@ show_usage() {
 
 show_menu() {
     echo -e "
-  ${green}x-ui managment${plain}
+  ${green}X-UI Panel managment${plain}
   ${green}0.${plain} Exit script
 ————————————————
   ${green}1.${plain} Install x-ui
