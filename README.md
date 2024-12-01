@@ -1,4 +1,5 @@
-# [am-serv00-x-ui](https://github.com/amclubs/am-serv00-x-ui)
+# Free-BSD-xui
+
 This is an xray panel based on serv00 free server installation x-ui for freebsd that supports multi-protocol and multi-user. This version supports FreeBSD non-root installation.
 
 #
