@@ -22,7 +22,7 @@ wget -O x-ui.sh -N --no-check-certificate https://raw.githubusercontent.com/ehsa
 
 ## Manual Installation & Upgrade
 
-1. First download the latest compressed package from https://github.com/amclubs/am-serv00-x-ui/releasesamd64 , generally choose the architecture
+1. First download the latest compressed package from [(https://github.com/amclubs/am-serv00-x-ui/releases) , generally choose the architecture
 2. Then upload this compressed package to the server /home/[username]directory.
 
 > If your server CPU architecture is not amd64, replace the command amd64with another architecture.
