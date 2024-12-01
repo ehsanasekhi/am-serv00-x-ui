@@ -404,15 +404,15 @@ show_status() {
     check_status
     case $? in
     0)
-        echo -e "面板状态: ${green}已运行${plain}"
+        echo -e "Panel status: ${green}Running${plain}"
         show_enable_status
         ;;
     1)
-        echo -e "面板状态: ${yellow}未运行${plain}"
+        echo -e "Panel status: ${yellow}Not running${plain}"
         show_enable_status
         ;;
     2)
-        echo -e "面板状态: ${red}未安装${plain}"
+        echo -e "Panel status: ${red}Not installed${plain}"
         ;;
     esac
     show_xray_status
@@ -421,9 +421,9 @@ show_status() {
 show_enable_status() {
     check_enabled
     if [[ $? == 0 ]]; then
-        echo -e "是否开机自启: ${green}是${plain}"
+        echo -e "Whether to start automatically after power on: ${green}yes${plain}"
     else
-        echo -e "是否开机自启: ${red}否${plain}"
+        echo -e "Whether to start automatically after power on: ${red}no${plain}"
     fi
 }
 
@@ -439,14 +439,14 @@ check_xray_status() {
 show_xray_status() {
     check_xray_status
     if [[ $? == 0 ]]; then
-        echo -e "xray 状态: ${green}运行${plain}"
+        echo -e "xray State: ${green}run${plain}"
     else
-        echo -e "xray 状态: ${red}未运行${plain}"
+        echo -e "xray State: ${red}Not running${plain}"
     fi
 }
 
 show_usage() {
-    echo "x-ui 管理脚本使用方法: "
+    echo "How to use x-ui management script: "
     echo "------------------------------------------"
     echo "/home/${USER}/x-ui.sh              - 显示管理菜单 (功能更多)"
     echo "/home/${USER}/x-ui.sh start        - 启动 x-ui 面板"
@@ -464,29 +464,29 @@ show_usage() {
 show_menu() {
     echo -e "
   ${green}x-ui managment${plain}
-  ${green}0.${plain} 退出脚本
+  ${green}0.${plain} Exit script
 ————————————————
-  ${green}1.${plain} 安装 x-ui
-  ${green}2.${plain} 更新 x-ui
-  ${green}3.${plain} 卸载 x-ui
+  ${green}1.${plain} Install x-ui
+  ${green}2.${plain} Update x-ui
+  ${green}3.${plain} Uninstall x-ui
 ————————————————
-  ${green}4.${plain} 重置用户名密码
-  ${green}5.${plain} 重置面板设置
-  ${green}6.${plain} 设置面板访问端口
-  ${green}7.${plain} 查看当前面板设置
+  ${green}4.${plain} Reset username and password
+  ${green}5.${plain} Reset panel settings
+  ${green}6.${plain} Settings panel access port
+  ${green}7.${plain} View current panel settings
 ————————————————
-  ${green}8.${plain} 启动 x-ui
-  ${green}9.${plain} 停止 x-ui
-  ${green}10.${plain} 重启 x-ui
-  ${green}11.${plain} 查看 x-ui 状态
-  ${green}12.${plain} 设置流量监测端口
+  ${green}8.${plain} Start x-ui
+  ${green}9.${plain} Stop x-ui
+  ${green}10.${plain} Restart x-ui
+  ${green}11.${plain} Check x-ui status
+  ${green}12.${plain} Set the traffic monitoring port
 ————————————————
-  ${green}13.${plain} 设置 x-ui 开机自启
-  ${green}14.${plain} 取消 x-ui 开机自启
+  ${green}13.${plain} Set x-ui to boot automatically
+  ${green}14.${plain} Cancel x-ui boot auto-start
 ————————————————
  "
     show_status
-    echo && read -p "请输入选择 [0-14]: " num
+    echo && read -p "Please enter your choice [0-14]: " num
 
     case "${num}" in
     0)
