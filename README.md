@@ -20,12 +20,12 @@ Before installation, please prepare your username, password and two ports (panel
 wget -O x-ui.sh -N --no-check-certificate https://raw.githubusercontent.com/ehsanasekhi/am-serv00-x-ui/main/x-ui.sh && chmod +x x-ui.sh && ./x-ui.sh
 ```
 
-## 手动安装&升级
+## Manual Installation & Upgrade
 
-1. 首先从 https://github.com/amclubs/am-serv00-x-ui/releases 下载最新的压缩包，一般选择 `amd64`架构
-2. 然后将这个压缩包上传到服务器的 `/home/[username]`目录下，
+1. First download the latest compressed package from https://github.com/amclubs/am-serv00-x-ui/releasesamd64 , generally choose the architecture
+2. Then upload this compressed package to the server /home/[username]directory.
 
-> 如果你的服务器 cpu 架构不是 `amd64`，自行将命令中的 `amd64`替换为其他架构
+> If your server CPU architecture is not amd64, replace the command amd64with another architecture.
 
 ```
 cd ~
@@ -42,15 +42,15 @@ rm x-ui.cron
 nohup ./x-ui run > ./x-ui.log 2>&1 &
 ```
 
-## SSL证书申请
+## SSL Certificate Application
 
-建议使用Cloudflare 15年证书
+It is recommended to use Cloudflare 15-year certificate
 
-## Tg机器人使用（开发中，暂不可使用）
+## Tg robot use (under development, temporarily unavailable)
 
-此功能未经测试！
+not working！
 
-## 建议系统
+## Suggestion system
 
 - FreeBSD 14+
 
