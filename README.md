@@ -1,5 +1,5 @@
 # [am-serv00-x-ui](https://github.com/amclubs/am-serv00-x-ui)
-这是一个基于serv00免费服务器安装 x-ui for freebsd 支持多协议多用户的 xray 面板, 本版本支持FreeBSD非root安装
+This is an xray panel based on serv00 free server installation x-ui for freebsd that supports multi-protocol and multi-user. This version supports FreeBSD non-root installation.
 
 #
 ▶️ **新人[YouTube](https://youtube.com/@AM_CLUB)** 需要您的支持，请务必帮我**点赞**、**关注**、**打开小铃铛**，***十分感谢！！！*** ✅
@@ -12,19 +12,19 @@
 - [免费节点Cloudflare视频教程](https://www.youtube.com/playlist?list=PLGVQi7TjHKXbrY0Pk8gm3T7m8MZ-InquF)
 - [serv00所有视频教程](https://www.youtube.com/playlist?list=PLGVQi7TjHKXaVlrHP9Du61CaEThYCQaiY)
 
-# 功能介绍
+# Function introduction
 
-- 系统状态监控
-- 支持多用户多协议，网页可视化操作
-- 支持的协议：vmess、vless、trojan、shadowsocks、dokodemo-door、socks、http
-- 支持配置更多传输配置
-- 流量统计，限制流量，限制到期时间
-- 可自定义 xray 配置模板
-- 支持 https 访问面板（自备域名 + ssl 证书）
-- 更多高级配置项，详见面板
+- System status monitoring
+- Supports multi-user and multi-protocol, web page visual operation
+- Supported protocols: vmess, vless, trojan, shadowsocks, dokodemo-door, socks, http
+- Support configuring more transmission configurations
+- Traffic statistics, traffic limit, limit expiration time
+- Customizable xray configuration templates
+- Support https access panel (bring your own domain name + SSL certificate)
+- For more advanced configuration items, see the panel for details
 
-# 安装&升级
-在安装前，请先准备好用户名，密码和两个端口（面板访问端口和流量监控端口）！
+# Installation & Upgrade
+Before installation, please prepare your username, password and two ports (panel access port and traffic monitoring port)!
 ```
 wget -O x-ui.sh -N --no-check-certificate https://raw.githubusercontent.com/ehsanasekhi/am-serv00-x-ui/main/x-ui.sh && chmod +x x-ui.sh && ./x-ui.sh
 ```
