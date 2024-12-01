@@ -82,7 +82,7 @@ update() {
         return 0
     fi
     cd ~
-    wget -N --no-check-certificate -O x-ui-install.sh https://raw.githubusercontent.com/amclubs/am-serv00-x-ui/main/install.sh
+    wget -N --no-check-certificate -O x-ui-install.sh https://raw.githubusercontent.com/ehsanasekhi/am-serv00-x-ui/main/install.sh
     chmod +x x-ui-install.sh
     ./x-ui-install.sh
     if [[ $? == 0 ]]; then
@@ -127,7 +127,7 @@ stop_x-ui() {
 
 install() {
     cd ~
-    wget -N --no-check-certificate -O x-ui-install.sh https://raw.githubusercontent.com/amclubs/am-serv00-x-ui/main/install.sh
+    wget -N --no-check-certificate -O x-ui-install.sh https://raw.githubusercontent.com/ehsanasekhi/am-serv00-x-ui/main/install.sh
     chmod +x x-ui-install.sh
     ./x-ui-install.sh
     if [[ $? == 0 ]]; then
@@ -334,7 +334,7 @@ disable() {
 }
 
 update_shell() {
-    wget -O ~/x-ui.sh -N --no-check-certificate https://raw.githubusercontent.com/amclubs/am-serv00-x-ui/main/x-ui.sh
+    wget -O ~/x-ui.sh -N --no-check-certificate https://raw.githubusercontent.com/ehsanasekhi/am-serv00-x-ui/main/x-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
         LOGE "下载脚本失败，请检查本机能否连接 Github"
