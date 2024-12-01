@@ -26,7 +26,7 @@ enable_str="nohup \.\/x-ui run"
 if echo "$uname_output" | grep -Eqi "freebsd"; then
     release="freebsd"
 else
-    echo -e "${red}未检测到系统版本，请联系脚本作者！${plain}\n" && exit 1
+    echo -e "${red}System version not detected, please contact the script author! ${plain}\n" && exit 1
 fi
 
 arch="none"
@@ -37,14 +37,14 @@ elif echo "$uname_output" | grep -Eqi 'aarch64|arm64'; then
     arch="arm64"
 else
     arch="amd64"
-    echo -e "${red}检测架构失败，使用默认架构: ${arch}${plain}"
+    echo -e "${red}检Detection schema failed，Use default schema: ${arch}${plain}"
 fi
 
-echo "架构: ${arch}"
+echo "Architecture: ${arch}"
 
 confirm() {
     if [[ $# > 1 ]]; then
-        echo && read -p "$1 [默认$2]: " temp
+        echo && read -p "$1 [default$2]: " temp
         if [[ x"${temp}" == x"" ]]; then
             temp=$2
         fi
@@ -59,7 +59,7 @@ confirm() {
 }
 
 confirm_restart() {
-    confirm "是否重启面板，重启面板也会重启 xray" "y"
+    confirm "Whether to restart the panel，Restarting the panel will also restart xray" "y"
     if [[ $? == 0 ]]; then
         restart
     else
@@ -68,14 +68,14 @@ confirm_restart() {
 }
 
 before_show_menu() {
-    echo && echo -n -e "${yellow}按回车返回主菜单: ${plain}" && read temp
+    echo && echo -n -e "${yellow}Press Enter to return to the main menu: ${plain}" && read temp
     show_menu
 }
 
 update() {
-    confirm "本功能会强制重装当前最新版，数据不会丢失，是否继续?" "n"
+    confirm "This function will force reinstall the latest version，The data will not be lost. Do you want to continue?" "n"
     if [[ $? != 0 ]]; then
-        LOGE "已取消"
+        LOGE "Canceled"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -86,38 +86,38 @@ update() {
     chmod +x x-ui-install.sh
     ./x-ui-install.sh
     if [[ $? == 0 ]]; then
-        LOGI "更新完成，已自动重启面板 "
+        LOGI "Update completed，Panel has been automatically restarted "
         exit 0
     fi
 }
 
 stop_x-ui() {
-    # 设置你想要杀死的nohup进程的命令名
+    # Set the command name of the nohup process you want to kill
     xui_com="./x-ui run"
     xray_com="bin/xray-$release-$arch -c bin/config.json"
  
-    # 使用pgrep查找进程ID
+    # Use pgrep to find process ID
     PID=$(pgrep -f "$xray_com")
  
-    # 检查是否找到了进程
+    # Check if the process is found
     if [ ! -z "$PID" ]; then
-        # 找到了进程，杀死它
+        # Found the process, kill it
         kill $PID
     
-        # 可选：检查进程是否已经被杀死
+        # Optional: Check if the process has been killed
         if kill -0 $PID > /dev/null 2>&1; then
             kill -9 $PID
         fi
     fi
-        # 使用pgrep查找进程ID
+        # Use pgrep to find process ID
     PID=$(pgrep -f "$xui_com")
  
-    # 检查是否找到了进程
+    # Check if the process is found
     if [ ! -z "$PID" ]; then
-        # 找到了进程，杀死它
+        # Found the process, kill it
         kill $PID
     
-        # 可选：检查进程是否已经被杀死
+        # Optional: Check if the process has been killed
         if kill -0 $PID > /dev/null 2>&1; then
             kill -9 $PID
         fi
@@ -140,7 +140,7 @@ install() {
 }
 
 uninstall() {
-    confirm "确定要卸载面板吗,xray 也会卸载?" "n"
+    confirm "Are you sure you want to uninstall the panel? Xray will also be uninstalled?" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
@@ -156,7 +156,7 @@ uninstall() {
     rm -rf ~/x-ui/
 
     echo ""
-    echo -e "卸载成功，如果你想删除此脚本，则退出脚本后运行 ${green}rm ~/x-ui.sh -f${plain} 进行删除"
+    echo -e "The uninstallation is successful. If you want to delete this script, exit the script and run ${green}rm ~/x-ui.sh -f${plain} Delete"
     echo ""
 
     if [[ $# == 0 ]]; then
@@ -165,7 +165,7 @@ uninstall() {
 }
 
 reset_user() {
-    confirm "确定要将用户名和密码重置为 admin 吗" "n"
+    confirm "Are you sure you want to reset your username and password to admin ?" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
@@ -173,12 +173,12 @@ reset_user() {
         return 0
     fi
     ~/x-ui/x-ui setting -username admin -password admin
-    echo -e "用户名和密码已重置为 ${green}admin${plain}，现在请重启面板"
+    echo -e "Username and password have been reset to ${green}admin${plain}，Please restart the panel now"
     confirm_restart
 }
 
 reset_config() {
-    confirm "确定要重置所有面板设置吗，账号数据不会丢失，用户名和密码不会改变" "n"
+    confirm "Are you sure you want to reset all panel settings? Account data will not be lost and username and password will not be changed." "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
@@ -186,7 +186,7 @@ reset_config() {
         return 0
     fi
     ~/x-ui/x-ui setting -reset
-    echo -e "所有面板设置已重置为默认值，现在请重启面板，并使用默认的 ${green}54321${plain} 端口访问面板"
+    echo -e "All panel settings have been reset to default values. Now please restart the panel and use the default ${green}54321${plain} Port access panel"
     confirm_restart
 }
 
@@ -203,25 +203,25 @@ check_config() {
 }
 
 set_port() {
-    echo && echo -n -e "输入端口号[1-65535]: " && read port
+    echo && echo -n -e "Enter port number[1-65535]: " && read port
     if [[ -z "${port}" ]]; then
-        LOGD "已取消"
+        LOGD "Canceled"
         before_show_menu
     else
         ~/x-ui/x-ui setting -port ${port}
-        echo -e "设置面板访问端口完毕，现在请重启面板，并使用新设置的端口 ${green}${port}${plain} 访问面板"
+        echo -e "The panel access port is set. Now please restart the panel and use the newly set port. ${green}${port}${plain} Access panel"
         confirm_restart
     fi
 }
 
 set_traffic_port() {
-    echo && echo -n -e "输入流量监测端口号[1-65535]: " && read trafficport
+    echo && echo -n -e "Enter the traffic monitoring port number[1-65535]: " && read trafficport
     if [[ -z "${trafficport}" ]]; then
-        LOGD "已取消"
+        LOGD "Canceled"
         before_show_menu
     else
         ~/x-ui/x-ui setting -trafficport ${trafficport}
-        echo -e "设置流量监测端口完毕，现在请重启面板，并使用新设置的端口 ${green}${trafficport}${plain} 访问面板"
+        echo -e "The traffic monitoring port is set. Now please restart the panel and use the newly set port. ${green}${trafficport}${plain} Access panel"
         confirm_restart
     fi
 }
@@ -231,16 +231,16 @@ start() {
     check_status
     if [[ $? == 0 ]]; then
         echo ""
-        LOGI "面板已运行，无需再次启动，如需重启请选择重启"
+        LOGI "The panel is already running and does not need to be started again. If you need to restart, please select Restart."
     else
         cd ~/x-ui
         nohup ./x-ui run > ./x-ui.log 2>&1 &
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
-            LOGI "x-ui 启动成功"
+            LOGI "x-ui started successfully"
         else
-            LOGE "面板启动失败，可能是因为启动时间超过了两秒，请稍后查看日志信息"
+            LOGE "The panel failed to start. It may be because the startup time exceeded two seconds. Please check the log information later."
         fi
     fi
 
@@ -253,15 +253,15 @@ stop() {
     check_status
     if [[ $? == 1 ]]; then
         echo ""
-        LOGI "面板已停止，无需再次停止"
+        LOGI "The panel has been stopped and does not need to be stopped again"
     else
         stop_x-ui
         sleep 2
         check_status
         if [[ $? == 1 ]]; then
-            LOGI "x-ui 与 xray 停止成功"
+            LOGI "x-ui and xray stopped successfully"
         else
-            LOGE "面板停止失败，可能是因为停止时间超过了两秒，请稍后查看日志信息"
+            LOGE "The panel failed to stop, possibly because the stop time exceeded two seconds. Please check the log information later."
         fi
     fi
 
@@ -276,9 +276,9 @@ restart() {
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
-        LOGI "x-ui 与 xray 重启成功"
+        LOGI "x-ui and xray restarted successfully"
     else
-        LOGE "面板重启失败，可能是因为启动时间超过了两秒，请稍后查看日志信息"
+        LOGE "The panel failed to restart, possibly because the startup time exceeded two seconds. Please check the log information later."
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -289,11 +289,11 @@ status() {
     COMMAND_NAME="./x-ui run"
     PID=$(pgrep -f "$COMMAND_NAME")
  
-    # 检查是否找到了进程
+    # Check if the process is found
     if [ ! -z "$PID" ]; then
-        LOGI "x-ui 运行中"
+        LOGI "x-ui is running"
     else
-        LOGI "x-ui 没有运行"
+        LOGI "x-ui is not running"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -307,9 +307,9 @@ enable() {
     crontab x-ui.cron
     rm x-ui.cron
     if [[ $? == 0 ]]; then
-        LOGI "x-ui 设置开机自启成功"
+        LOGI "x-ui settings start automatically at boot successfully"
     else
-        LOGE "x-ui 设置开机自启失败"
+        LOGE "x-ui failed to set up auto-start at boot"
     fi
 
     if [[ $# == 0 ]]; then
@@ -323,9 +323,9 @@ disable() {
     crontab x-ui.cron
     rm x-ui.cron
     if [[ $? == 0 ]]; then
-        LOGI "x-ui 取消开机自启成功"
+        LOGI "x-ui cancels boot and auto-start successfully"
     else
-        LOGE "x-ui 取消开机自启失败"
+        LOGE "x-ui failed to cancel boot auto-start"
     fi
 
     if [[ $# == 0 ]]; then
@@ -337,11 +337,11 @@ update_shell() {
     wget -O ~/x-ui.sh -N --no-check-certificate https://raw.githubusercontent.com/ehsanasekhi/am-serv00-x-ui/main/x-ui.sh
     if [[ $? != 0 ]]; then
         echo ""
-        LOGE "下载脚本失败，请检查本机能否连接 Github"
+        LOGE "Failed to download the script, please check whether the machine can connect to Github"
         before_show_menu
     else
         chmod +x ~/x-ui
-        LOGI "升级脚本成功，请重新运行脚本" && exit 0
+        LOGI "The upgrade script is successful, please re-run the script." && exit 0
     fi
 }
 
@@ -353,7 +353,7 @@ check_status() {
     COMMAND_NAME="./x-ui run"
     PID=$(pgrep -f "$COMMAND_NAME")
  
-    # 检查是否找到了进程
+    # Check if the process is found
     if [ ! -z "$PID" ]; then
         return 0
     else
@@ -364,7 +364,7 @@ check_status() {
 check_enabled() {
     cron_str=$(crontab -l)
  
-    # 检查grep的退出状态码
+    # Check the exit status code of grep
     if echo "$cron_str" | grep -Eqi "$enable_str"; then
         return 0
     else
@@ -376,7 +376,7 @@ check_uninstall() {
     check_status
     if [[ $? != 2 ]]; then
         echo ""
-        LOGE "面板已安装，请不要重复安装"
+        LOGE "The panel has been installed, please do not install it again"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -390,7 +390,7 @@ check_install() {
     check_status
     if [[ $? == 2 ]]; then
         echo ""
-        LOGE "请先安装面板"
+        LOGE "Please install the panel first"
         if [[ $# == 0 ]]; then
             before_show_menu
         fi
@@ -448,16 +448,16 @@ show_xray_status() {
 show_usage() {
     echo "How to use x-ui management script: "
     echo "------------------------------------------"
-    echo "/home/${USER}/x-ui.sh              - 显示管理菜单 (功能更多)"
-    echo "/home/${USER}/x-ui.sh start        - 启动 x-ui 面板"
-    echo "/home/${USER}/x-ui.sh stop         - 停止 x-ui 面板"
-    echo "/home/${USER}/x-ui.sh restart      - 重启 x-ui 面板"
-    echo "/home/${USER}/x-ui.sh status       - 查看 x-ui 状态"
-    echo "/home/${USER}/x-ui.sh enable       - 设置 x-ui 开机自启"
-    echo "/home/${USER}/x-ui.sh disable      - 取消 x-ui 开机自启"
-    echo "/home/${USER}/x-ui.sh update       - 更新 x-ui 面板"
-    echo "/home/${USER}/x-ui.sh install      - 安装 x-ui 面板"
-    echo "/home/${USER}/x-ui.sh uninstall    - 卸载 x-ui 面板"
+    echo "/home/${USER}/x-ui.sh              - Show management menu (more functions)"
+    echo "/home/${USER}/x-ui.sh start        - Start x-ui panel"
+    echo "/home/${USER}/x-ui.sh stop         - Stop x-ui panel"
+    echo "/home/${USER}/x-ui.sh restart      - Restart the x-ui panel"
+    echo "/home/${USER}/x-ui.sh status       - View x-ui status"
+    echo "/home/${USER}/x-ui.sh enable       - enable x-ui"
+    echo "/home/${USER}/x-ui.sh disable      - Disable x-ui startup"
+    echo "/home/${USER}/x-ui.sh update       - Update x-ui panel"
+    echo "/home/${USER}/x-ui.sh install      - Installing the x-ui panel"
+    echo "/home/${USER}/x-ui.sh uninstall    - Uninstall x-ui panel"
     echo "------------------------------------------"
 }
 
@@ -535,7 +535,7 @@ show_menu() {
         check_install && disable
         ;;
     *)
-        LOGE "请输入正确的数字 [0-14]"
+        LOGE "Please enter a valid number [0-14]"
         ;;
     esac
 }
