@@ -26,7 +26,7 @@
 # 安装&升级
 在安装前，请先准备好用户名，密码和两个端口（面板访问端口和流量监控端口）！
 ```
-wget -O x-ui.sh -N --no-check-certificate https://raw.githubusercontent.com/amclubs/am-serv00-x-ui/main/x-ui.sh && chmod +x x-ui.sh && ./x-ui.sh
+wget -O x-ui.sh -N --no-check-certificate https://raw.githubusercontent.com/ehsanasekhi/am-serv00-x-ui/main/x-ui.sh && chmod +x x-ui.sh && ./x-ui.sh
 ```
 
 ## 手动安装&升级
